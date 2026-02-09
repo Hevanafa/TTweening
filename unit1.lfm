@@ -1,11 +1,11 @@
 object Form1: TForm1
   Left = 1850
-  Height = 240
+  Height = 342
   Top = 250
-  Width = 320
+  Width = 371
   Caption = 'Form1'
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 342
+  ClientWidth = 371
   OnShow = FormShow
   object StartButton: TButton
     Left = 120
@@ -23,6 +23,14 @@ object Form1: TForm1
     Width = 59
     Caption = 'Dummy'
     TabOrder = 1
+  end
+  object LoggerMemo: TMemo
+    Left = 8
+    Height = 106
+    Top = 224
+    Width = 352
+    ScrollBars = ssVertical
+    TabOrder = 2
   end
   object TweenUpdateTimer: TTimer
     Interval = 16

@@ -22,7 +22,7 @@ function easeInCubic(v: double): double;
 function easeOutCubic(v: double): double;
 function easeInOutCubic(v: double): double;
 
-{ More easing functions: quart, quint, expo, elastic, bounce, and so on }
+{ More easing functions: quart, quint, expo, circ, back, elastic, bounce }
 
 implementation
 
