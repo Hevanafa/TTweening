@@ -218,18 +218,29 @@ begin
 end;
 
 procedure TTweenManager.clear;
+var
+  a: smallint;
 begin
-
+  for a:=fTweens.count - 1 downto 0 do begin
+    fTweens[a].free;
+    fTweens.delete(a)
+  end;
 end;
 
 procedure TTweenManager.pauseAll;
+var
+  a: smallint;
 begin
-
+  for a:=0 to fTweens.count - 1 do
+    fTweens[a].pause;
 end;
 
 procedure TTweenManager.resumeAll;
+var
+  a: smallint;
 begin
-
+  for a:=0 to fTweens.count - 1 do
+    fTweens[a].play;
 end;
 
 end.
