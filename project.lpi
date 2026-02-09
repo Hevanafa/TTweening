@@ -47,6 +47,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UTweening"/>
       </Unit>
+      <Unit>
+        <Filename Value="units\utweenfunctions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UTweenFunctions"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

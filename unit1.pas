@@ -9,7 +9,7 @@ interface
 uses
   Classes, SysUtils, Forms,
   Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  UTweening;
+  UTweening, UTweenFunctions;
 
 type
 
