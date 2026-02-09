@@ -70,9 +70,26 @@ procedure TTween.update(deltaTime: double);
 var
   perc, eased: double;
 begin
+  if fIsComplete then exit;
+
+  if fIsPlaying then
+    fElapsed := fElapsed + deltaTime;
+
+  if fElapsed > fDuration then begin
+    fElapsed := fDuration;
+    fCurrentValue := fEndValue;
+    fIsComplete := true;
+
+    if assigned(fOnComplete) then fOnComplete(self);
+
+    exit
+  end;
+
   perc := fElapsed / fDuration;
   eased := fEasing(perc);
-  fCurrentValue := fStartValue + (fEndValue - fStartValue) * eased
+  fCurrentValue := fStartValue + (fEndValue - fStartValue) * eased;
+
+  if assigned(fOnUpdate) then fOnUpdate(self);
 end;
 
 procedure TTween.play;
