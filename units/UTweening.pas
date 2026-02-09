@@ -15,6 +15,8 @@ type
   TEasingFunction = function(v: single): single;
   TTweenCallback = procedure(t: TTween) of object;
 
+  { TTween }
+
   TTween = class
   private
     fStartValue: single;
@@ -118,6 +120,24 @@ end;
 function TTween.setEasing(easing: TEasingFunction): TTween;
 begin
   fEasing := easing;
+  result := self
+end;
+
+function TTween.onStart(callback: TTweenCallback): TTween;
+begin
+  fOnStart := callback;
+  result := self
+end;
+
+function TTween.onUpdate(callback: TTweenCallback): TTween;
+begin
+  fOnUpdate := callback;
+  result := self
+end;
+
+function TTween.onComplete(callback: TTweenCallback): TTween;
+begin
+  fOnComplete := callback;
   result := self
 end;
 
