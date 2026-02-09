@@ -57,11 +57,6 @@ begin
   TweenUpdateTimer.Enabled := true;
 end;
 
-function linear(v: single): single;
-begin
-  result := v
-end;
-
 procedure TForm1.dummyOnUpdate(tween: TTween);
 begin
   DummyButton.Left := round(tween.currentValue);
