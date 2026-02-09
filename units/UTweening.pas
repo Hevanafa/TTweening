@@ -13,18 +13,18 @@ uses
 type
   TTween = class;
 
-  TEasingFunction = function(v: single): single;
+  TEasingFunction = function(v: double): double;
   TTweenCallback = procedure(t: TTween) of object;
 
   { TTween }
 
   TTween = class
   private
-    fStartValue: single;
-    fEndValue: single;
-    fCurrentValue: single;
+    fStartValue: double;
+    fEndValue: double;
+    fCurrentValue: double;
     fDuration: double;  { in seconds }
-    fElapsed: single;
+    fElapsed: double;
     fEasing: TEasingFunction;
     fIsPlaying: boolean;
     fIsComplete: boolean;
@@ -52,7 +52,7 @@ type
     function onComplete(callback: TTweenCallback): TTween;
     function thenTween(nextTween: TTween): TTween;
 
-    property currentValue: single read fCurrentValue;
+    property currentValue: double read fCurrentValue;
     property isComplete: boolean read fIsComplete;
     property autoFree: boolean read fAutoFree write fAutoFree;
   end;
