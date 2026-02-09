@@ -23,7 +23,7 @@ type
     fStartValue: single;
     fEndValue: single;
     fCurrentValue: single;
-    fDuration: single;
+    fDuration: double;  { in seconds }
     fElapsed: single;
     fEasing: TEasingFunction;
     fIsPlaying: boolean;
@@ -38,7 +38,7 @@ type
     fNextTween: TTween;
 
   public
-    constructor create(startVal, endVal, duration: single);
+    constructor create(startVal, endVal, duration: double);
     destructor destroy; override;
 
     procedure update(deltaTime: double);
@@ -83,7 +83,7 @@ implementation
 
 { TTween }
 
-constructor TTween.create(startVal, endVal, duration: single);
+constructor TTween.create(startVal, endVal, duration: double);
 begin
   fStartValue := startVal;
   fEndValue := endVal;
@@ -242,6 +242,10 @@ begin
   for a:=0 to fTweens.count - 1 do
     fTweens[a].play;
 end;
+
+
+initialization
+  TweenManager := TTweenManager.create;
 
 end.
 
