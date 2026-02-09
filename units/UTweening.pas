@@ -30,6 +30,7 @@ type
     fOnStart: TTweenCallback;
     fOnUpdate: TTweenCallback;
     fOnComplete: TTweenCallback;
+    fNextTween: TTween;
 
   public
     constructor create(startVal, endVal, duration: single);
@@ -81,6 +82,7 @@ begin
     fIsComplete := true;
 
     if assigned(fOnComplete) then fOnComplete(self);
+    if assigned(fNextTween) then fNextTween.play;
 
     exit
   end;
@@ -115,27 +117,14 @@ end;
 
 function TTween.setEasing(easing: TEasingFunction): TTween;
 begin
-
-end;
-
-function TTween.onStart(callback: TTweenCallback): TTween;
-begin
-
-end;
-
-function TTween.onUpdate(callback: TTweenCallback): TTween;
-begin
-
-end;
-
-function TTween.onComplete(callback: TTweenCallback): TTween;
-begin
-
+  fEasing := easing;
+  result := self
 end;
 
 function TTween.thenTween(nextTween: TTween): TTween;
 begin
-
+  fNextTween := nextTween;
+  result := nextTween
 end;
 
 end.
