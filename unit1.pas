@@ -11,7 +11,7 @@ uses
   Controls, Graphics, Dialogs;
 
 type
-  TEasingFunction = function(currentTime, startVal, deltaVal, duration: single): single;
+  TEasingFunction = function(v: single): single;
   TTweenCallback = procedure(t: TTweenCallback) of object;
 
   TTween = class
