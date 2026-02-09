@@ -1,6 +1,6 @@
 # TTweening
 
-An object-oriented easing engine made for Object Pascal
+An object-oriented easing library made for Object Pascal
 
 Inspired by DOTween, Phaser 3 and Cocos Creator
 
