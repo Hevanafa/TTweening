@@ -81,6 +81,9 @@ var
 
 implementation
 
+uses
+  UTweenFunctions;
+
 { TTween }
 
 constructor TTween.create(startVal, endVal, duration: double);
@@ -88,6 +91,8 @@ begin
   fStartValue := startVal;
   fEndValue := endVal;
   fDuration := duration;
+
+  setEasing(@easeLinear);
 
   fAutoFree := true
 end;
