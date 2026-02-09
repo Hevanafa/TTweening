@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, Math;
 
-function linear(v: double): double;
+function easeLinear(v: double): double;
 
 function easeInQuad(v: double): double;
 function easeOutQuad(v: double): double;
@@ -26,7 +26,7 @@ function easeInOutCubic(v: double): double;
 
 implementation
 
-function linear(v: double): double;
+function easeLinear(v: double): double;
 begin
   result := v
 end;

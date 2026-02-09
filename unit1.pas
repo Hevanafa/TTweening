@@ -69,7 +69,7 @@ begin
   testTween := TTween.create(DummyButton.Left, DummyButton.Left + 100, 2.0);
 
   testTween
-    .setEasing(@linear)
+    .setEasing(@easeOutQuad)
     .onUpdate(@dummyOnUpdate)
     .play;
 
