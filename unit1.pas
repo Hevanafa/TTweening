@@ -11,7 +11,7 @@ uses
   Controls, Graphics, Dialogs,
   UTweening;
 
-
+type
   TForm1 = class(TForm)
   private
 

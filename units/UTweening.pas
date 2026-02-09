@@ -10,6 +10,8 @@ uses
   Classes, SysUtils;
 
 type
+  TTween = class;
+
   TEasingFunction = function(v: single): single;
   TTweenCallback = procedure(t: TTween) of object;
 
@@ -69,7 +71,7 @@ var
   perc, eased: double;
 begin
   perc := fElapsed / fDuration;
-  eased := fEasing(progress);
+  eased := fEasing(perc);
   fCurrentValue := fStartValue + (fEndValue - fStartValue) * eased
 end;
 
