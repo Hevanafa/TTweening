@@ -8,13 +8,20 @@ interface
 
 uses
   Classes, SysUtils, Forms,
-  Controls, Graphics, Dialogs,
+  Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
   UTweening;
 
 type
-  TForm1 = class(TForm)
-  private
 
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    DummyButton: TButton;
+    StartButton: TButton;
+    TweenUpdateTimer: TTimer;
+    procedure TweenUpdateTimerTimer(Sender: TObject);
+  private
+    fTweenManager: TTweenManager;
   public
 
   end;
@@ -25,6 +32,13 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.TweenUpdateTimerTimer(Sender: TObject);
+begin
+  fTweenManager.update(0.016)
+end;
 
 end.
 
