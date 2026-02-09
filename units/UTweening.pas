@@ -77,17 +77,23 @@ end;
 
 procedure TTween.play;
 begin
+  fIsPlaying := true;
 
+  { First time playing }
+  if (fElapsed = 0.0) and assigned(fOnStart) then fOnStart(self);
 end;
 
 procedure TTween.pause;
 begin
-
+  fIsPlaying := false
 end;
 
 procedure TTween.reset;
 begin
-
+  fElapsed := 0.0;
+  fCurrentValue := fStartValue;
+  fIsPlaying := false;
+  fIsComplete := false
 end;
 
 function TTween.setEasing(easing: TEasingFunction): TTween;
