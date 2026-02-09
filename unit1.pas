@@ -16,14 +16,18 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    ResetPosButton: TButton;
     DummyButton: TButton;
     LoggerMemo: TMemo;
     StartButton: TButton;
     TweenUpdateTimer: TTimer;
     procedure FormShow(Sender: TObject);
+    procedure ResetPosButtonClick(Sender: TObject);
     procedure StartButtonClick(Sender: TObject);
     procedure TweenUpdateTimerTimer(Sender: TObject);
   private
+    startPos: TPoint;
+
     procedure log(const msg: string);
 
     procedure dummyOnStart(tween: TTween);
@@ -100,6 +104,14 @@ begin
   deltaTime := 0.0;
 
   TweenUpdateTimer.Enabled := true;
+
+  startPos := TPoint.create(DummyButton.left, DummyButton.top);
+end;
+
+procedure TForm1.ResetPosButtonClick(Sender: TObject);
+begin
+  DummyButton.Left := startPos.x;
+  DummyButton.Top := startPos.y;
 end;
 
 end.
