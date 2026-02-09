@@ -3,6 +3,7 @@ unit UTweening;
 {$Mode ObjFPC}
 {$H+}
 {$J-}
+{$Notes OFF}
 
 interface
 
@@ -28,6 +29,8 @@ type
     fIsPlaying: boolean;
     fIsComplete: boolean;
 
+    fAutoFree: boolean;
+
     { Callbacks }
     fOnStart: TTweenCallback;
     fOnUpdate: TTweenCallback;
@@ -51,13 +54,16 @@ type
 
     property currentValue: single read fCurrentValue;
     property isComplete: boolean read fIsComplete;
+    property autoFree: boolean read fAutoFree write fAutoFree;
   end;
 
   { TTweenManager }
 
+  TTweenList = specialize TFPGList<TTween>;
+
   TTweenManager = class
   private
-    fTweens: specialize TFPGList<TTween>;
+    fTweens: TTweenList;
   public
     constructor create;
     destructor destroy; override;
@@ -82,6 +88,8 @@ begin
   fStartValue := startVal;
   fEndValue := endVal;
   fDuration := duration;
+
+  fAutoFree := true
 end;
 
 destructor TTween.destroy;
@@ -171,22 +179,24 @@ end;
 
 constructor TTweenManager.create;
 begin
-
+  fTweens := TTweenList.create;
 end;
 
 destructor TTweenManager.destroy;
 begin
+  fTweens.free;
   inherited destroy;
 end;
 
 function TTweenManager.add(tween: TTween): TTween;
 begin
-
+  fTweens.add(tween);
+  result := tween
 end;
 
 procedure TTweenManager.remove(tween: TTween);
 begin
-
+  fTweens.Remove(tween)
 end;
 
 procedure TTweenManager.update(deltaTime: double);
