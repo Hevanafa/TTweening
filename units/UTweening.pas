@@ -7,7 +7,7 @@ unit UTweening;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, FGL;
 
 type
   TTween = class;
@@ -52,6 +52,26 @@ type
     property currentValue: single read fCurrentValue;
     property isComplete: boolean read fIsComplete;
   end;
+
+  { TTweenManager }
+
+  TTweenManager = class
+  private
+    fTweens: specialize TFPGList<TTween>;
+  public
+    constructor create;
+    destructor destroy; override;
+
+    function add(tween: TTween): TTween;
+    procedure remove(tween: TTween);
+    procedure update(deltaTime: double);
+    procedure clear;
+    procedure pauseAll;
+    procedure resumeAll;
+  end;
+
+var
+  TweenManager: TTweenManager;
 
 implementation
 
@@ -145,6 +165,48 @@ function TTween.thenTween(nextTween: TTween): TTween;
 begin
   fNextTween := nextTween;
   result := nextTween
+end;
+
+{ TTweenManager }
+
+constructor TTweenManager.create;
+begin
+
+end;
+
+destructor TTweenManager.destroy;
+begin
+  inherited destroy;
+end;
+
+function TTweenManager.add(tween: TTween): TTween;
+begin
+
+end;
+
+procedure TTweenManager.remove(tween: TTween);
+begin
+
+end;
+
+procedure TTweenManager.update(deltaTime: double);
+begin
+
+end;
+
+procedure TTweenManager.clear;
+begin
+
+end;
+
+procedure TTweenManager.pauseAll;
+begin
+
+end;
+
+procedure TTweenManager.resumeAll;
+begin
+
 end;
 
 end.

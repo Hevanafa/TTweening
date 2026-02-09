@@ -21,7 +21,7 @@ type
     TweenUpdateTimer: TTimer;
     procedure TweenUpdateTimerTimer(Sender: TObject);
   private
-    fTweenManager: TTweenManager;
+
   public
 
   end;
@@ -37,7 +37,7 @@ implementation
 
 procedure TForm1.TweenUpdateTimerTimer(Sender: TObject);
 begin
-  fTweenManager.update(0.016)
+  TweenManager.update(0.016)  { or use an actual DeltaTime }
 end;
 
 end.
