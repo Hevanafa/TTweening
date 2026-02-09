@@ -37,18 +37,26 @@ implementation
 
 {$R *.lfm}
 
+var
+  lastTime: qword;  { in milliseconds }
+  deltaTime: double;  { in seconds }
+
 { TForm1 }
 
 procedure TForm1.TweenUpdateTimerTimer(Sender: TObject);
 begin
-  TweenManager.update(0.016)  { or use an actual DeltaTime }
+  deltaTime := (GetTickCount64 - lastTime) / 1000.0;
+  lastTime := GetTickCount64;
+
+  TweenManager.update(deltaTime)  { or use an actual DeltaTime }
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
+  lastTime := GetTickCount64;
+  deltaTime := 0.0;
+
   TweenUpdateTimer.Enabled := true;
-
-
 end;
 
 function linear(v: single): single;
