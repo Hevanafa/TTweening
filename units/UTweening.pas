@@ -11,9 +11,7 @@ uses
 
 type
   TEasingFunction = function(v: single): single;
-  TTweenCallback = procedure(t: TTweenCallback) of object;
-
-  { TTween }
+  TTweenCallback = procedure(t: TTween) of object;
 
   TTween = class
   private
@@ -50,14 +48,15 @@ type
     property isComplete: boolean read fIsComplete;
   end;
 
-
 implementation
 
 { TTween }
 
 constructor TTween.create(startVal, endVal, duration: single);
 begin
-
+  fStartValue := startVal;
+  fEndValue := endVal;
+  fDuration := duration;
 end;
 
 destructor TTween.destroy;
@@ -66,8 +65,12 @@ begin
 end;
 
 procedure TTween.update(deltaTime: double);
+var
+  perc, eased: double;
 begin
-
+  perc := fElapsed / fDuration;
+  eased := fEasing(progress);
+  fCurrentValue := fStartValue + (fEndValue - fStartValue) * eased
 end;
 
 procedure TTween.play;
