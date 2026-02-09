@@ -59,7 +59,7 @@ type
 
   { TTweenManager }
 
-  TTweenList = specialize TFPGList<TTween>;
+  TTweenList = specialize TFPGObjectList<TTween>;
 
   TTweenManager = class
   private
@@ -179,7 +179,7 @@ end;
 
 constructor TTweenManager.create;
 begin
-  fTweens := TTweenList.create;
+  fTweens := TTweenList.create(false);
 end;
 
 destructor TTweenManager.destroy;
@@ -200,8 +200,21 @@ begin
 end;
 
 procedure TTweenManager.update(deltaTime: double);
+var
+  a: smallint;
+  tween: TTween;
 begin
+  a:=0;
 
+  while a < fTweens.count do begin
+    tween := fTweens[a];
+    tween.update(deltaTime);
+
+    if tween.isComplete and tween.autoFree then begin
+      fTweens.delete(a);
+      tween.free
+    end else inc(a);
+  end;
 end;
 
 procedure TTweenManager.clear;
