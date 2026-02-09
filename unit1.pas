@@ -23,8 +23,6 @@ type
     procedure StartButtonClick(Sender: TObject);
     procedure TweenUpdateTimerTimer(Sender: TObject);
   private
-    testTween: TTween;
-
     procedure dummyOnUpdate(tween: TTween);
   public
 
@@ -70,12 +68,17 @@ begin
 end;
 
 procedure TForm1.StartButtonClick(Sender: TObject);
+var
+  testTween: TTween;
 begin
-  if not assigned(testTween) then begin
-    testTween := TTween.create(DummyButton.Left, DummyButton.Left + 100, 2.0);
-    testTween.setEasing(@linear).onUpdate(@dummyOnUpdate).play;
-    TweenManager.add(testTween);
-  end;
+  testTween := TTween.create(DummyButton.Left, DummyButton.Left + 100, 2.0);
+
+  testTween
+    .setEasing(@linear)
+    .onUpdate(@dummyOnUpdate)
+    .play;
+
+  TweenManager.add(testTween);
 end;
 
 end.
