@@ -38,7 +38,7 @@ type
     fNextTween: TTween;
 
   public
-    constructor create(startVal, endVal, duration: double);
+    constructor create(startVal, endVal, duration: double);  { duration is in seconds }
     destructor destroy; override;
 
     procedure update(deltaTime: double);
